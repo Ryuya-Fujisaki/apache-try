@@ -22,6 +22,19 @@ services:
       - "8080:80"
     volumes:
       - wordpress-data:/var/www/html
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: wpuser
+      PMA_PASSWORD: wppass
+    ports:
+      - "8082:80"
+    volumes:
+      - phpmyadmin-data:/sessions
 volumes:
   db-data:
   wordpress-data:
+  phpmyadmin-data:
